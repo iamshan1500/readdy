@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发布新任务 - 任务管理系统</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#DD2C2C',secondary:'#F59E0B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #DD2C2C;
+  box-shadow: 0 0 0 3px rgba(221, 44, 44, 0.1);
+}
+.required-field::after {
+  content: "*";
+  color: #DD2C2C;
+  margin-left: 4px;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- 顶部导航栏 -->
+<header class="w-full bg-primary text-white">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center">
+      <a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/a5fe51d0-b4ab-4a3c-88a9-82424c2c7823" data-readdy="true" class="text-white hover:text-white/80 mr-4">
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-arrow-left-line ri-lg"></i>
+        </div>
+      </a>
+      <div class="text-xl font-bold">发布新任务</div>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/a5fe51d0-b4ab-4a3c-88a9-82424c2c7823" data-readdy="true" class="text-white hover:text-white/80 font-medium">任务列表</a>
+      <a href="#" class="text-white hover:text-white/80 font-medium">管理中心</a>
+      <div class="w-8 h-8 flex items-center justify-center relative">
+        <i class="ri-notification-3-line ri-lg"></i>
+      </div>
+      <div class="flex items-center space-x-2">
+        <span class="text-white">admin</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- 主要内容区域 -->
+<main class="container mx-auto px-4 py-8">
+  <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-6 mb-8">
+    <form id="taskForm">
+      <!-- 任务名称 -->
+      <div class="mb-6">
+        <label for="taskName" class="block text-gray-700 font-medium mb-2 required-field">任务名称</label>
+        <input type="text" id="taskName" name="taskName" class="form-input w-full px-4 py-2 border border-gray-300 rounded text-gray-700" required>
+        <div class="error-message text-primary text-sm mt-1 hidden">请输入任务名称</div>
+      </div>
+
+      <!-- 所属部门 -->
+      <div class="mb-6">
+        <label for="department" class="block text-gray-700 font-medium mb-2 required-field">所属部门</label>
+        <div class="relative">
+          <select id="department" name="department" class="form-select appearance-none w-full px-4 py-2 border border-gray-300 rounded text-gray-700 pr-8" required>
+            <option value="">请选择部门</option>
+            <option value="水质科">水质科</option>
+            <option value="环境监测部">环境监测部</option>
+            <option value="勘测队">勘测队</option>
+            <option value="监测科">监测科</option>
+            <option value="技术研发部">技术研发部</option>
+            <option value="工程管理部">工程管理部</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+          </div>
+        </div>
+        <div class="error-message text-primary text-sm mt-1 hidden">请选择所属部门</div>
+      </div>
+
+      <!-- 优先级选择 -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-medium mb-2 required-field">优先级选择</label>
+        <div class="flex space-x-6">
+          <label class="inline-flex items-center">
+            <input type="radio" name="priority" value="高" class="hidden" required>
+            <span class="w-5 h-5 inline-block border border-gray-300 rounded-full flex-shrink-0 mr-2 priority-radio"></span>
+            <span class="text-gray-700">高</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="priority" value="中" class="hidden" checked>
+            <span class="w-5 h-5 inline-block border border-gray-300 rounded-full flex-shrink-0 mr-2 priority-radio"></span>
+            <span class="text-gray-700">中</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="priority" value="低" class="hidden">
+            <span class="w-5 h-5 inline-block border border-gray-300 rounded-full flex-shrink-0 mr-2 priority-radio"></span>
+            <span class="text-gray-700">低</span>
+          </label>
+        </div>
+        <div class="error-message text-primary text-sm mt-1 hidden">请选择优先级</div>
+      </div>
+
+      <!-- 任务描述 -->
+      <div class="mb-6">
+        <label for="description" class="block text-gray-700 font-medium mb-2 required-field">任务描述</label>
+        <textarea id="description" name="description" rows="4" class="form-textarea w-full px-4 py-2 border border-gray-300 rounded text-gray-700" required></textarea>
+        <div class="error-message text-primary text-sm mt-1 hidden">请输入任务描述</div>
+      </div>
+
+      <!-- 时间选择区域 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="startDate" class="block text-gray-700 font-medium mb-2 required-field">开始日期</label>
+          <input type="date" id="startDate" name="startDate" class="form-input w-full px-4 py-2 border border-gray-300 rounded text-gray-700" required>
+          <div class="error-message text-primary text-sm mt-1 hidden">请选择开始日期</div>
+        </div>
+        <div>
+          <label for="endDate" class="block text-gray-700 font-medium mb-2 required-field">结束日期</label>
+          <input type="date" id="endDate" name="endDate" class="form-input w-full px-4 py-2 border border-gray-300 rounded text-gray-700" required>
+          <div class="error-message text-primary text-sm mt-1 hidden">请选择结束日期</div>
+        </div>
+      </div>
+
+      <!-- 需求人数 -->
+      <div class="mb-6">
+        <label for="requiredPeople" class="block text-gray-700 font-medium mb-2 required-field">需求人数</label>
+        <div class="relative">
+          <input type="number" id="requiredPeople" name="requiredPeople" min="1" class="form-input w-full px-4 py-2 border border-gray-300 rounded text-gray-700" required>
+          <div class="error-message text-primary text-sm mt-1 hidden">请输入需求人数</div>
+        </div>
+      </div>
+
+      <!-- 申请条件 -->
+      <div class="mb-8">
+        <label for="requirements" class="block text-gray-700 font-medium mb-2">申请条件</label>
+        <textarea id="requirements" name="requirements" rows="3" class="form-textarea w-full px-4 py-2 border border-gray-300 rounded text-gray-700"></textarea>
+      </div>
+
+      <!-- 按钮区域 -->
+      <div class="flex justify-center space-x-4">
+        <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-8 py-2 !rounded-button whitespace-nowrap">提交</button>
+        <a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/a5fe51d0-b4ab-4a3c-88a9-82424c2c7823" data-readdy="true" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-8 py-2 !rounded-button whitespace-nowrap text-center no-underline">取消</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 设置日期默认值为今天和一周后
+  const today = new Date();
+  const nextWeek = new Date(today);
+  nextWeek.setDate(today.getDate() + 7);
+  
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  
+  document.getElementById('startDate').value = formatDate(today);
+  document.getElementById('endDate').value = formatDate(nextWeek);
+  
+  // 自定义单选按钮样式
+  const priorityRadios = document.querySelectorAll('input[name="priority"]');
+  priorityRadios.forEach(radio => {
+    const span = radio.nextElementSibling;
+    
+    if (radio.checked) {
+      span.classList.add('bg-primary');
+      span.classList.add('border-primary');
+    }
+    
+    radio.addEventListener('change', function() {
+      document.querySelectorAll('.priority-radio').forEach(el => {
+        el.classList.remove('bg-primary');
+        el.classList.remove('border-primary');
+      });
+      
+      if (this.checked) {
+        span.classList.add('bg-primary');
+        span.classList.add('border-primary');
+      }
+    });
+  });
+  
+  // 表单验证
+  const taskForm = document.getElementById('taskForm');
+  const requiredFields = taskForm.querySelectorAll('[required]');
+  
+  requiredFields.forEach(field => {
+    field.addEventListener('blur', function() {
+      validateField(this);
+    });
+    
+    field.addEventListener('input', function() {
+      if (this.classList.contains('invalid')) {
+        validateField(this);
+      }
+    });
+  });
+  
+  function validateField(field) {
+    const errorMessage = field.parentElement.querySelector('.error-message') || 
+                         field.parentElement.parentElement.querySelector('.error-message');
+    
+    if (!field.value.trim()) {
+      field.classList.add('border-primary');
+      field.classList.add('invalid');
+      if (errorMessage) errorMessage.classList.remove('hidden');
+      return false;
+    } else {
+      field.classList.remove('border-primary');
+      field.classList.remove('invalid');
+      if (errorMessage) errorMessage.classList.add('hidden');
+      return true;
+    }
+  }
+  
+  taskForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+      if (!validateField(field)) {
+        isValid = false;
+      }
+    });
+    
+    // 验证结束日期不早于开始日期
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    
+    if (endDate < startDate) {
+      const endDateField = document.getElementById('endDate');
+      const errorMessage = endDateField.parentElement.querySelector('.error-message');
+      endDateField.classList.add('border-primary');
+      endDateField.classList.add('invalid');
+      errorMessage.textContent = '结束日期不能早于开始日期';
+      errorMessage.classList.remove('hidden');
+      isValid = false;
+    }
+    
+    if (isValid) {
+      // 显示成功提示
+      const successMessage = document.createElement('div');
+      successMessage.className = 'fixed top-4 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md z-50';
+      successMessage.innerHTML = '<div class="flex items-center"><i class="ri-check-line mr-2"></i><span>任务发布成功！即将返回任务列表...</span></div>';
+      document.body.appendChild(successMessage);
+      
+      // 2秒后跳转回任务列表页面
+      setTimeout(function() {
+        window.location.href = 'https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/a5fe51d0-b4ab-4a3c-88a9-82424c2c7823';
+      }, 2000);
+    }
+  });
+});
+</script>
+</body>
+</html>
