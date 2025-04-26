@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任务管理系统</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#DD2C2C',secondary:'#F59E0B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.task-card {
+transition: all 0.3s ease;
+}
+.task-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- 顶部导航栏 -->
+<header class="w-full bg-primary text-white">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<div class="text-xl font-bold">任务管理系统</div>
+<nav class="flex items-center space-x-6">
+<a href="#" class="text-white hover:text-white/80 font-medium">任务列表</a>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/c96ea266-8924-4225-8df0-d025de4d583f" data-readdy="true" class="text-white hover:text-white/80 font-medium">管理中心</a>
+<div class="w-8 h-8 flex items-center justify-center relative">
+<i class="ri-notification-3-line ri-lg"></i>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-white">admin</span>
+</div>
+</nav>
+</div>
+</header>
+<!-- 主要内容区域 -->
+<main class="container mx-auto px-4 py-6">
+<div class="flex justify-between items-center mb-8">
+<h1 class="text-2xl font-bold text-gray-800">任务列表</h1>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/50e79c65-7db4-49ed-bbcc-e1f2f7165e61" data-readdy="true" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 !rounded-button flex items-center whitespace-nowrap no-underline">
+<i class="ri-add-line mr-1"></i>
+发布新任务
+</a>
+</div>
+<!-- 任务卡片网格 -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- 任务卡片 1 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">水质科</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-red-100 text-red-600 px-2 py-0.5 text-sm rounded">高优先级</span>
+<span class="bg-red-100 text-red-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-close-circle-line mr-1"></i>已截止
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">参加水质实验室样品优化分析任务，项目复杂（以编码化验品量分全程参与）</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>04/03 至 04/03</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 3/2</span>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-information-line mr-1"></i>
+<span>初步了解水质实验室检测流程</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+<!-- 任务卡片 2 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">勘测队</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-yellow-100 text-yellow-600 px-2 py-0.5 text-sm rounded">中优先级</span>
+<span class="bg-red-100 text-red-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-close-circle-line mr-1"></i>已截止
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">1234</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>03/10 至 03/31</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 2/2</span>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-smartphone-line mr-1"></i>
+<span>有免费地APP设计经验...</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+<!-- 任务卡片 3 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">5</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-yellow-100 text-yellow-600 px-2 py-0.5 text-sm rounded">中优先级</span>
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-time-line mr-1"></i>剩余 1 天
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">5</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>04/13 至 04/27</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 2/2</span>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-number-5 mr-1"></i>
+<span>5</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+<!-- 任务卡片 4 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">监测科</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-yellow-100 text-yellow-600 px-2 py-0.5 text-sm rounded">中优先级</span>
+<span class="bg-red-100 text-red-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-close-circle-line mr-1"></i>已截止
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">固定资产检查</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>04/12 至 04/12</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 1/2</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+<!-- 任务卡片 5 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">水质科氮氮项目</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-yellow-100 text-yellow-600 px-2 py-0.5 text-sm rounded">中优先级</span>
+<span class="bg-red-100 text-red-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-close-circle-line mr-1"></i>已截止
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">22</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>04/06 至 04/06</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 2/3</span>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-follow-line mr-1"></i>
+<span>已选定: 2人</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+<!-- 任务卡片 6 -->
+<div class="task-card bg-white rounded shadow-sm p-5">
+<div class="font-medium text-lg text-gray-800 mb-3">环境监测部</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-gray-100 text-gray-600 px-2 py-0.5 text-sm rounded">assigned</span>
+<span class="bg-yellow-100 text-yellow-600 px-2 py-0.5 text-sm rounded">中优先级</span>
+<span class="bg-green-100 text-green-600 px-2 py-0.5 text-sm rounded flex items-center">
+<i class="ri-time-line mr-1"></i>剩余 5 天
+</span>
+</div>
+<p class="text-gray-700 mb-4 line-clamp-2">水环境质量监测项目参与，需要熟悉基本水质检测方法和流程</p>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<i class="ri-calendar-line mr-1"></i>
+<span>04/26 至 05/10</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-user-line mr-1"></i>
+<span>申请: 1/3</span>
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<i class="ri-map-pin-line mr-1"></i>
+<span>城南水质监测站</span>
+</div>
+</div>
+<a href="https://readdy.ai/home/8ab2d5e2-de7b-406a-a2bd-37c5049ef430/170db119-f51a-4b72-97aa-d4dbc12e8eec" data-readdy="true" class="block no-underline">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-2 !rounded-button whitespace-nowrap">
+查看详情
+</button>
+</a>
+</div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const taskCards = document.querySelectorAll('.task-card');
+taskCards.forEach(card => {
+card.addEventListener('click', function(e) {
+if (!e.target.closest('button') && !e.target.closest('a')) {
+const detailLink = this.querySelector('a');
+if (detailLink) {
+detailLink.click();
+}
+}
+});
+});
+});
+</script>
+</body>
+</html>
